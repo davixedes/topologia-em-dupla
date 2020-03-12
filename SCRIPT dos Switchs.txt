@@ -1,0 +1,54 @@
+SW-01
+
+enable
+config terminal
+hostname SW-01
+username DAVI privilege 15 secret DAVI*vty
+login local 
+ip domain-name 1rede.local
+crypto key generate rsa general-keys modulus 1024
+enable secret DAVI*enable
+line console 0
+password DAVI*console
+login
+exit
+line vty 0 15
+transport input ssh 
+password DAVI*vty
+login 
+exit
+interface vlan 1
+ip address 192.168.0.254 255.255.255.0
+no shutdown 
+exit 
+service password-encryption 
+end 
+wr 
+
+
+SW-02
+
+enable
+config terminal
+username DAVI privilege 15 secret DAVI*vty
+login local
+hostname SW-02
+ip domain-name 1rede.local
+crypto key generate rsa general-keys modulus 1024
+enable secret DAVI*enable
+line console 0
+password DAVI*console
+login
+exit
+line vty 0 15
+transport input ssh 
+password DAVI*vty
+login 
+exit
+interface vlan 1
+ip address 172.16.0.254 255.255.0.0
+no shutdown 
+exit 
+service password-encryption 
+end 
+wr 

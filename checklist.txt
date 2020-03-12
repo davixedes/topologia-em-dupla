@@ -1,0 +1,6 @@
+Hostname
+Senha da Enable
+Senha da console
+domínio
+Gerar chave ssh 1024 bits
+Senha da VTY

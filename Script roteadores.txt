@@ -1,0 +1,26 @@
+enable
+config terminal
+hostname RT-01
+ip domain-name 1rede.local
+crypto key generate rsa general-keys modulus 1024
+enable secret NATHAN*enable
+line console 0
+password NATHAN*console
+login
+exit
+line vty 0 15
+transport input ssh 
+password NATHAN*vty
+login 
+exit
+interface gigabitEthernet 0/0
+ip address 192.168.0.1 255.255.255.0
+no shutdown
+exit
+interface gigabitEthernet 0/1
+ip address 172.16.0.1 255.255.0.0
+no shutdown
+exit 
+service password-encryption 
+end 
+wr 
